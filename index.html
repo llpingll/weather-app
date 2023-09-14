@@ -3,15 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather APP</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form>
-        <label for="search"></label>
-        <input type="text" id="search" placeholder="Search city">
-        <button type="submit">Submit</button>
+    <header class="header">
+        <h1 class="page-name"><i class="fas fa-cloud-sun"></i>Weather App</h1>
+    </header>
+    <main class="main">
+    <form class="form" id="searchForm" novalidate>
+        <input
+        class="input"
+        id="searchInput"
+        type="text"
+        placeholder="Enter city name"
+        />
+        <button class="btn btn-submit" id="searchBtn" type="submit">
+        Search
+        </button>
     </form>
+    <div class="search-result" id="searchResult">
+        <h3 id="cityName"></h3>
+        <p id="temperature"></p>
+        <p id="feelsLike"></p>
+        <p id="humidity"></p>
+        <p id="wind"></p>
+    </div>
+    </main>
 </body>
 </html>
