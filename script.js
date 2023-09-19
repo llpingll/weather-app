@@ -13,10 +13,8 @@ const form = (() => {
         .then(function (response) {
             if (!response.ok) {
                 if (response.status === 400) {
-                    // console.log("Error 400");
                     throw new Error(`Error: City ${input.value} not found`);
                 } else {
-                    // console.log("Error failed");
                     throw new Error("Failed to retrieve data");
                 }
             }
@@ -25,6 +23,31 @@ const form = (() => {
     }
 
     return {input, formDOM, getCurrentTemp};
+})();
+
+const display = (() => {
+    const searchResult = document.querySelector(".search-result");
+    const fields = document.querySelectorAll(".search-result *")
+
+    const render = (data) => {
+        const results = [];
+        results.push(`${data.location.name}`);
+        results.push(`${data.current.temp_c} °C`);
+        results.push(`Fells like: ${data.current.feelslike_c}°C`);
+        results.push(`Humidity: ${data.current.humidity} %`);
+        results.push(`Wind: ${data.current.wind_kph} km/h`);
+
+        for (let x in results) {
+            fields[x].textContent = results[x];
+        }
+
+        if (!searchResult.classList.contains("active")) {
+            searchResult.classList.add("active");
+        }
+        
+    }
+
+    return {render}
 })();
 
 form.formDOM.addEventListener("submit", (e) => {
@@ -36,11 +59,10 @@ form.formDOM.addEventListener("submit", (e) => {
 
     form.getCurrentTemp()
     .then(response => {
-        console.log(response);
+        display.render(response)
     })
     .catch(error => {
         alert(error.message);
     });
-    // .finally(display.render());
-    formDOM.reset();
+    form.formDOM.reset();
 });
