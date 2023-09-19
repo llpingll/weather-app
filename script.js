@@ -25,6 +25,7 @@ const form = (() => {
     return {input, formDOM, getCurrentTemp};
 })();
 
+// Result display module
 const display = (() => {
     const searchResult = document.querySelector(".search-result");
     const fields = document.querySelectorAll(".search-result *")
@@ -33,7 +34,7 @@ const display = (() => {
         const results = [];
         results.push(`${data.location.name}`);
         results.push(`${data.current.temp_c} °C`);
-        results.push(`Fells like: ${data.current.feelslike_c}°C`);
+        results.push(`Feels like: ${data.current.feelslike_c}°C`);
         results.push(`Humidity: ${data.current.humidity} %`);
         results.push(`Wind: ${data.current.wind_kph} km/h`);
 
